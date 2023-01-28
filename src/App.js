@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+
+const footer = (
+  <footer
+    style={{ border: '2px solid orange', color: 'black', fontSize: '18px' }}
+  >
+    <small>&copy;2023</small>
+  </footer>
+)
+const title = <h1 className='title'>Getting Started React</h1>
+ const inputField = (
+      <div>
+        <label htmlFor='firstname'>First Name</label>
+        <input type='text' id='firstname' placeholder='First Name' />
+      </div>
+    )
+
+const cars = ['Tesla', 'Tata', 'Mercedes' ]
+const carsFormatted = cars.map((car) => <li key={car}>{car}</li>)
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1> React Practice</h1>
       </header>
+      {title}
+      {inputField}
+      {carsFormatted}
+      {footer}
     </div>
   );
 }
