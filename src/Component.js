@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import logo from './logo.svg';
 // Header Component
-const Header = () => (
+const Header = (props) => (
     <header>
       <div>
-        <h1>This is header</h1>
+        <h1>{props.msg}</h1>
       </div>
     </header>
   )
@@ -19,19 +19,19 @@ const Header = () => (
   )
   
   // TechList Component
-  const TechList = () => {
-    const techs = ['HTML', 'CSS', 'JavaScript']
+  const TechList = (props) => {
+    const techs = props.techs;
     const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
     return techsFormatted
   }
   
   // Main Component
-  const Main = () => (
+  const Main = (props) => (
     <main>
       <div className='main-wrapper'>
         <p>Main section of page</p>
         <ul>
-          <TechList />
+          <TechList techs={props.techs}/>
         </ul>
         <UserCard />
       </div>
@@ -39,20 +39,27 @@ const Header = () => (
   )
   
   // Footer Component
-  const Footer = () => (
+  const Footer = (props) => {
+    console.log(props);
+    return (
     <footer>
+        {
+        props.visible ?
       <div className='footer-wrapper'>
         <p>Copyright 2020</p>
-      </div>
+      </div> :
+      ""
+        }
     </footer>
   )
+    };
   
   // The App, or the parent or the container component
   const Component = () => (
     <div className='component'>
-      <Header />
-      <Main />
-      <Footer />
+      <Header msg="Header:This is from props "/>
+      <Main techs={['HTML', 'CSS', 'JavaScript', 'PHP']}/>
+      <Footer visible={true}/>
     </div>
   )
   
