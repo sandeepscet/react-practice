@@ -18,15 +18,23 @@ const title = <h1 className='title'>Getting Started React</h1>
 const cars = ['Tesla', 'Tata', 'Mercedes' ]
 const carsFormatted = cars.map((car) => <li key={car}>{car}</li>)
 
+const headerStyles = {
+  backgroundColor: '#61DBFB',
+  fontFamily: 'Helvetica Neue',
+  lineHeight: 1.5,
+}
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" style={headerStyles}>
         <h1> React Practice</h1>
       </header>
-      {title}
-      {inputField}
-      {carsFormatted}
+      <main>
+        {title}
+        {inputField}
+        {carsFormatted}
+      </main>
       {footer}
     </div>
   );
