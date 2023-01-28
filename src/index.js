@@ -1,65 +1,37 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, {Component} from 'react'
+import ReactDOM  from 'react-dom'
+
+const Button = ({ onClick, text, style }) => {
+  return (
+    <button onClick={onClick} style={style}>
+      {text}
+    </button>
+  )
+}
+
+const buttonWithStyle = (CompParam) => {
+  const buttonStyles = {
+    backgroundColor: '#61dbfb',
+    padding: '10px 25px',
+    border: 'none',
+    borderRadius: 5,
+    margin: 3,
+    cursor: 'pointer',
+    fontSize: 18,
+    color: 'white',
+  }
+  return (props) => {
+    return <CompParam {...props} style={buttonStyles} />
+  }
+}
+const NewButton = buttonWithStyle(Button)
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    console.log('In constructor');
-    console.log(props);
-    this.state = {
-      count: 0,
-    }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    console.log('in getDerivedStateFromProps'    )
-    console.log({props})
-    console.log({state})
-    return null
-  }
-  componentDidMount() {
-    console.log('in componentDidMount')
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('in shouldComponentUpdate')
-    console.log({nextProps})
-    console.log({nextState})
-    return true;
-  }
-
-  getSnapshotBeforeUpdate (prevProps, prevState) {
-    console.log('in getSnapshotBeforeUpdate')
-    console.log({prevProps})
-    console.log({prevState})
-    return true;
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('in componentDidUpdate')
-    console.log({prevProps})
-    console.log({prevState})
-  }
-
-
-
-  componentWillUnmount(){
-    console.log('in componentWillUnmount')
-  }
-
-  updateCounter= () => {
-    this.setState({
-      count: this.state.count + 1,
-    })
-  }
-
-
   render() {
-    console.log('Start of render')
     return (
       <div className='App'>
-        <h1>Cycle of Life</h1>
-        <button onClick={this.updateCounter}>Count++</button>
+        <Button text='No Style' />
+        <NewButton text='Styled Button' />
       </div>
     )
   }
