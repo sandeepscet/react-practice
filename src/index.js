@@ -8,7 +8,6 @@ import App from './components/App';
 
 // Init store
 const store = configureStore();
-console.log(store);
 
 
 const container = document.getElementById('root');

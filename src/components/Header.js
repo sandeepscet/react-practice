@@ -12,7 +12,7 @@ function Header() {
     return (
         <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="javascript:void(0)" onClick={navigateToHome}>
+          <Navbar.Brand onClick={navigateToHome}>
             Quiz
           </Navbar.Brand>
         </Container>

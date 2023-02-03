@@ -1,4 +1,4 @@
-import { CONFIGS } from '../constants/config.js';
+import { CONFIGS } from '../constants/constants.js';
 
 
 export const storeConfig = (configdata) => {
@@ -9,7 +9,6 @@ export const storeConfig = (configdata) => {
 }
 
 export const saveConfig = ( config ) => {
-    console.log({config});
     return (dispatch) => {
         dispatch(savingConfig(true));
         dispatch(errorConfig(false));

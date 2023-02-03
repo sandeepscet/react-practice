@@ -1,4 +1,4 @@
-import {CONFIGS} from '../constants/config.js';
+import {CONFIGS} from '../constants/constants.js';
 
 
 const initialState = {

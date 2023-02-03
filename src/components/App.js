@@ -1,45 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as CONFIGACTIONS from '../actions/config.js';
+import { QUIZ_STATUS } from '../constants/constants.js';
+
 import Header from './Header';
 import Config from './Config';
 import Quiz from './Quiz';
+import Loader from './Loader';
 import Result from './Result';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
 const App = (props) => {
-  console.log({props});
-  const {configData} = props
-  if(!configData.finallySaved)
-  {
-    props.saveConfig({'finallySaved' : true});
-  }
-  console.log('saveConfig called');
+  const {configData, loader , quizStatus} = props
 
   return (
     <>
     <Header></Header>
-    <Config>this is app</Config>        
-    <Quiz>this is app</Quiz>        
-    <Result>this is app</Result>        
+    {loader && (<Loader >this is Loader </Loader>)}     
+    {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config >this is app</Config>)}     
+    {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz>this is app</Quiz>)}        
+    {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result>this is app</Result>)}        
     </>
   );
 };
 
 // Get state data from store to props
 const mapStateToProps = (state) => {
-  console.log({state});
     return {
-        configData: state.config.data
+        configData: state.config.data,
+        loader : state.loader,
+        quizStatus : state.quiz
     };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    //saveConfig: configData => dispatch(CONFIGACTIONS.saveConfig(configData))
-    saveConfig: configData => { console.log({configData} , 'prop'); dispatch(CONFIGACTIONS.saveConfig(configData))}
+    saveConfig: configData => dispatch(CONFIGACTIONS.saveConfig(configData))
   };
 };
 
