@@ -1,50 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import ReactDOM, { findDOMNode } from 'react-dom'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-const Todo = ({ todo: { userId, id, title, completed } }) => {
-  return (
-    <div>
-      <h3>{title} {completed ? "Completed" : "Pending"}</h3>      
-      
-    </div>
-  )
-}
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 
-const App = (props) => {
-  // setting initial state and method to update state
-  const [data, setData] = useState([])
+import App from './components/App';
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+// Init store
+const store = configureStore();
+console.log(store);
 
-  const fetchData = async () => {
-    const url = 'https://jsonplaceholder.typicode.com/todos/'
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      setData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
-  return (
-    <div className='App'>
-      <h1>Fetching Data Using Hook</h1>
-      <h1>Calling API</h1>
-      <div>
-        <p>There are {data.length} TODOs in the api</p>
-        <div>
-          {data.map((todo) => (
-            <Todo todo={todo} />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>      
+        <App />
+    </Provider>  
+    </React.StrictMode>
+);
