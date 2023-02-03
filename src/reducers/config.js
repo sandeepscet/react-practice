@@ -3,9 +3,9 @@ import {CONFIGS} from '../constants/constants.js';
 
 const initialState = {
     noOfQue : 5,
-    category : '',
-    difficulty : '',
-    type: 'boolean'
+    category : 'any',
+    difficulty : 'any',
+    type: 'multiple'
 }
 
 export const config = (state =  {data : initialState}, action) => {

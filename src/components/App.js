@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as CONFIGACTIONS from '../actions/config.js';
 import { QUIZ_STATUS } from '../constants/constants.js';
 
 import Header from './Header';
@@ -13,15 +12,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = (props) => {
-  const {configData, loader , quizStatus} = props
+  const { loader , quizStatus} = props
 
   return (
     <>
     <Header></Header>
-    {loader && (<Loader >this is Loader </Loader>)}     
-    {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config >this is app</Config>)}     
-    {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz>this is app</Quiz>)}        
-    {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result>this is app</Result>)}        
+    {loader && (<Loader > Loading </Loader>)}     
+    {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config></Config>)}     
+    {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz></Quiz>)}        
+    {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)}        
     </>
   );
 };
@@ -35,11 +34,6 @@ const mapStateToProps = (state) => {
     };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveConfig: configData => dispatch(CONFIGACTIONS.saveConfig(configData))
-  };
-};
 
 // Wire it all up and export
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
