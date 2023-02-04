@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { QUIZ_STATUS } from '../constants/constants.js';
 import * as QUIZACTIONS from '../actions/quiz';
 
@@ -8,7 +10,7 @@ import Config from './Config';
 import Quiz from './Quiz';
 import Loader from './Loader';
 import Result from './Result';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 
