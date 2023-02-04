@@ -17,6 +17,7 @@ export const saveConfig = ( config ) => {
             dispatch(storeConfig(config));
             return config;
         } catch (error) {
+            console.error(error);
             dispatch(savingConfig(false));
             dispatch(errorConfig(true));
         }

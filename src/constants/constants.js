@@ -10,11 +10,13 @@ export const LOADER = {
 }
 
 export const QUIZ = {
-    "UPDATE_QUIZ_STATUS" : "UPDATE_QUIZ_STATUS"
+    "UPDATE_QUIZ_STATUS" : "UPDATE_QUIZ_STATUS",
+    "UPDATE_QUIZ_DATA" : "UPDATE_QUIZ_DATA",
+    "FETCH_QUIZ" : "FETCH_QUIZ"
 }
 
 export const QUIZ_STATUS = {
-    "START" : "0",
-    "COMPLETED" : "1",
-    "RESET" : "2"
+    "START" : 0,
+    "COMPLETED" : 1,
+    "RESET" : 2
 }

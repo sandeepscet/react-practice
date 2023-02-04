@@ -3,8 +3,8 @@ import {CONFIGS} from '../constants/constants.js';
 
 const initialState = {
     noOfQue : 5,
-    category : 'any',
-    difficulty : 'any',
+    category : '',
+    difficulty : '',
     type: 'multiple'
 }
 

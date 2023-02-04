@@ -4,20 +4,18 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import * as CONFIGACTIONS from '../actions/config.js';
-import * as QUIZACTIONS from '../actions/quiz';
-import { QUIZ_STATUS } from '../constants/constants.js';
+
 
 
 
 const  Config = (props) => {
   const {configData} = props
-
   const [config, setConfig] = useState(configData);
 
   function onSubmit(e) {
     e.preventDefault();
     props.saveConfig(config);
-    props.updateQuizStatus(QUIZ_STATUS.START);
+    props.startquiz(config);
 
   }
 
@@ -32,7 +30,7 @@ const  Config = (props) => {
       <Form.Group className="mb-3" controlId="category">
         <Form.Label>Select Category</Form.Label>
         <Form.Select aria-label="Default select example" onChange={e =>setConfig({...config , category : e.target.value})} value={config.category}>
-        <option value="any">Any Category</option>
+        <option value="">Any Category</option>
         <option value="9">General Knowledge</option>
         <option value="11">Film</option>
         <option value="20">Mythology</option>
@@ -43,7 +41,7 @@ const  Config = (props) => {
       <Form.Group className="mb-3" controlId="difficulty" >
         <Form.Label>Select Difficulty</Form.Label>
         <Form.Select aria-label="Default select example" onChange={e =>setConfig({...config , difficulty : e.target.value})} value={config.difficulty}>
-        <option value="any">Any</option>
+        <option value="">Any</option>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
@@ -68,8 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveConfig: configData => dispatch(CONFIGACTIONS.saveConfig(configData)),
-    updateQuizStatus :status => dispatch(QUIZACTIONS.updateQuizStatus(status))
+    saveConfig: configData => dispatch(CONFIGACTIONS.saveConfig(configData))
   };
 };
 
