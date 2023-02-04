@@ -12,6 +12,7 @@ export const LOADER = {
 export const QUIZ = {
     "UPDATE_QUIZ_STATUS" : "UPDATE_QUIZ_STATUS",
     "UPDATE_QUIZ_DATA" : "UPDATE_QUIZ_DATA",
+    "SAVE_QUIZ_RESULT" : "SAVE_QUIZ_RESULT",
     "FETCH_QUIZ" : "FETCH_QUIZ"
 }
 

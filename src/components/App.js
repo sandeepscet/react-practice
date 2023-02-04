@@ -14,11 +14,10 @@ import './App.css';
 
 
 const App = (props) => {
-  const { loader , quizStatus, config} = props
+  const { loader , quizStatus, config  } = props
 
   function startquiz(config){
      props.fetchQuiz(config);
-     props.updateQuizStatus(QUIZ_STATUS.START);
   }
 
   return (
@@ -26,7 +25,7 @@ const App = (props) => {
     <Header></Header>
     {loader && (<Loader > Loading </Loader>)}     
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
-    {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz></Quiz>)}        
+    {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz ></Quiz>)}        
     {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)}        
     </>
   );
@@ -37,7 +36,8 @@ const mapStateToProps = (state) => {
     return {
         configData: state.config.data,
         loader : state.loader,
-        quizStatus : state.quiz.status
+        quizStatus : state.quiz.status,
+        qna : state.quiz.data
     };
 }
 

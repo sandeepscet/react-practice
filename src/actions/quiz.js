@@ -1,4 +1,5 @@
 import { QUIZ, QUIZ_STATUS } from '../constants/constants.js';
+import { shuffle } from '../utils';
 
 export const updateQuizStatus = (status) => {
     return {
@@ -7,10 +8,25 @@ export const updateQuizStatus = (status) => {
     };
 }
 
+export const saveResult = (result) => {
+    return {
+        type: QUIZ.SAVE_QUIZ_RESULT,
+        data : result
+    };
+}
+
+export const saveData = (data) => {
+    return {
+        type: QUIZ.UPDATE_QUIZ_DATA,
+        data : data
+    };
+}
+
 export const fetchQuiz = (config) => {
     return async dispatch => {
         function onSuccess(data) {
-          dispatch({ type: QUIZ.UPDATE_QUIZ_DATA, data: data });
+          dispatch(saveData(data));
+          dispatch(updateQuizStatus(QUIZ_STATUS.START));
           return data;
         }
         function onError(error) {
@@ -19,7 +35,6 @@ export const fetchQuiz = (config) => {
         }
         try {
             const API = `https://opentdb.com/api.php?amount=${config.noOfQue}&category=${config.category}&difficulty=${config.difficulty}&type=${config.type}`;
-            debugger;
             const response  = await fetch(API);
             const data = await response.json();
             if(data.response_code !== 0)
@@ -28,7 +43,10 @@ export const fetchQuiz = (config) => {
             }
             else
             {
-                return onSuccess(data.results);
+                const result = data.results;
+                const formattedResult = result.map((question) => { return {...question ,  'options' : shuffle([...question.incorrect_answers , question.correct_answer]) }} );
+                
+                return onSuccess(formattedResult);
             }
             
         } catch (error) {
