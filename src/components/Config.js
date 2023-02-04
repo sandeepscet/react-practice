@@ -15,7 +15,7 @@ const  Config = (props) => {
   function onSubmit(e) {
     e.preventDefault();
     props.saveConfig(config);
-    props.startquiz(config);
+    props.startquiz(config);    
 
   }
 

@@ -1,5 +1,6 @@
 import { QUIZ, QUIZ_STATUS } from '../constants/constants.js';
 import { shuffle } from '../utils';
+import * as LOADERACTIONS from '../actions/loader';
 
 export const updateQuizStatus = (status) => {
     return {
@@ -23,10 +24,11 @@ export const saveData = (data) => {
 }
 
 export const fetchQuiz = (config) => {
+    
     return async dispatch => {
         function onSuccess(data) {
           dispatch(saveData(data));
-          dispatch(updateQuizStatus(QUIZ_STATUS.START));
+          dispatch(updateQuizStatus(QUIZ_STATUS.START));          
           return data;
         }
         function onError(error) {
@@ -34,9 +36,11 @@ export const fetchQuiz = (config) => {
           return error;
         }
         try {
+            dispatch(LOADERACTIONS.displayLoader(true));
             const API = `https://opentdb.com/api.php?amount=${config.noOfQue}&category=${config.category}&difficulty=${config.difficulty}&type=${config.type}`;
             const response  = await fetch(API);
             const data = await response.json();
+            dispatch(LOADERACTIONS.displayLoader(false));
             if(data.response_code !== 0)
             {
                 return onError("No Records Found");

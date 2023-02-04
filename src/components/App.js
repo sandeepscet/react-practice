@@ -9,12 +9,12 @@ import Quiz from './Quiz';
 import Loader from './Loader';
 import Result from './Result';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './App.css';
 
 
+
 const App = (props) => {
-  const { loader , quizStatus, config  } = props
+  const { loader , quizStatus, config  } = props  
 
   function startquiz(config){
      props.fetchQuiz(config);
@@ -23,7 +23,7 @@ const App = (props) => {
   return (
     <>
     <Header></Header>
-    {loader && (<Loader > Loading </Loader>)}     
+    {loader && (<Loader > Fetching Data... </Loader>)}     
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
     {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz ></Quiz>)}        
     {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)}        
@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     updateQuizStatus :status => dispatch(QUIZACTIONS.updateQuizStatus(status)),
-    fetchQuiz : config => dispatch(QUIZACTIONS.fetchQuiz(config)),
+    fetchQuiz : config => dispatch(QUIZACTIONS.fetchQuiz(config))
   };
 };
 

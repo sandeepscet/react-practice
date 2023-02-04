@@ -1,6 +1,5 @@
 import { CONFIGS } from '../constants/constants.js';
 
-
 export const storeConfig = (configdata) => {
     return {
         type: CONFIGS.STORE_CONFIG,
