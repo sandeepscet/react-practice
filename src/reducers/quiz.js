@@ -93,7 +93,7 @@ const initialState = {
             ]
         }
         ],
-    'result' : [false, false, false, false, false]
+    'result' : [false, false, false, true, false]
 }
 
 export const quiz = (state =  initialState, action) => {
