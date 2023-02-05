@@ -4,10 +4,11 @@
 
 - [x] Error Boundries
 - [x] Lady compoents
-- [] React base practices
 - [] container-ui compoents
 - [x] Suspense
 - [x] class based component with hooks
+- [x] React Strict
+- [x] Ref
 
 ## Links
 - https://reactjs.org/docs/optimizing-performance.html
@@ -16,3 +17,7 @@
 - [Highlight updates](https://blog.logrocket.com/death-by-a-thousand-cuts-a-checklist-for-eliminating-common-react-performance-issues/)
 - https://reactjs.org/docs/code-splitting.html
 - https://create-react-app.dev/docs/deployment/
+
+## Repos to Explore
+- https://github.com/oldboyxx/jira_clone
+- https://github.com/cypress-io/cypress-realworld-app

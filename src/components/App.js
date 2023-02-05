@@ -25,6 +25,7 @@ const App = (props) => {
   return (
     <>
     <Header></Header>
+    <React.StrictMode>
     {loader && (<Loader > Fetching Data... </Loader>)}     
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
     {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz ></Quiz>)}        
@@ -33,7 +34,8 @@ const App = (props) => {
       <Suspense fallback={<div>Fetching Todo, Tada!!...</div>}>
           <LazyComponent />
       </Suspense>  
-    </ErrorBoundary>     
+    </ErrorBoundary>  
+    </React.StrictMode>   
     </>
   );
 };
@@ -56,4 +58,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Wire it all up and export
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(App);
