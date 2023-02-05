@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense }  from 'react';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,12 +11,12 @@ import Quiz from './Quiz';
 import Loader from './Loader';
 import Result from './Result';
 
+import ErrorBoundary from './ErrorBoundary';
 import './App.css';
-
-
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
 
 const App = (props) => {
-  const { loader , quizStatus, config  } = props  
+  const { loader , quizStatus  } = props  
 
   function startquiz(config){
      props.fetchQuiz(config);
@@ -28,7 +28,12 @@ const App = (props) => {
     {loader && (<Loader > Fetching Data... </Loader>)}     
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
     {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz ></Quiz>)}        
-    {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)}        
+    {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)} 
+    <ErrorBoundary>
+      <Suspense fallback={<div>Fetching Todo, Tada!!...</div>}>
+          <LazyComponent />
+      </Suspense>  
+    </ErrorBoundary>     
     </>
   );
 };

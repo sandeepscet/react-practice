@@ -2,13 +2,12 @@
 
 ## Implement
 
-- [] Error Boundries
-- [] Lady compoents
+- [x] Error Boundries
+- [x] Lady compoents
 - [] React base practices
 - [] container-ui compoents
-- [] Suspense
-- [] class based component with hooks
-- [] store config in local storage
+- [x] Suspense
+- [x] class based component with hooks
 
 ## Links
 - https://reactjs.org/docs/optimizing-performance.html

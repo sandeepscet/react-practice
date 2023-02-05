@@ -8,7 +8,7 @@ import {  QUIZ_STATUS } from '../constants/constants.js';
 
 
 function Quiz(props) {
-  const {qna , savedResult , savedResultCount} = props;
+  const {qna , savedResult } = props;
   const [result, setResult] = useState(savedResult);
   const nextQuestionIndex = savedResult.length === 0 ? 0 : savedResult.length;
   const current_question = qna[nextQuestionIndex]
