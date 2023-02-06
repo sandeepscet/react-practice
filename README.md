@@ -19,5 +19,7 @@
 - https://create-react-app.dev/docs/deployment/
 
 ## Repos to Explore
+- https://github.com/john-smilga/react-projects
+- https://github.com/SafdarJamal/quiz-app/
 - https://github.com/oldboyxx/jira_clone
 - https://github.com/cypress-io/cypress-realworld-app

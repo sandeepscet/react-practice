@@ -30,11 +30,11 @@ const App = (props) => {
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
     {!loader && quizStatus === QUIZ_STATUS.START && (<Quiz ></Quiz>)}        
     {!loader && quizStatus === QUIZ_STATUS.COMPLETED && (<Result></Result>)} 
-    <ErrorBoundary>
+    {!loader && quizStatus === QUIZ_STATUS.RESET && (<ErrorBoundary>
       <Suspense fallback={<div>Fetching Todo, Tada!!...</div>}>
           <LazyComponent />
       </Suspense>  
-    </ErrorBoundary>  
+    </ErrorBoundary>)}  
     </React.StrictMode>   
     </>
   );
