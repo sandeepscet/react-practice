@@ -9,14 +9,14 @@ import {  QUIZ_STATUS } from '../constants/constants.js';
 
 function Quiz(props) {
   const {qna , savedResult } = props;
-  const [result, setResult] = useState(savedResult);
   const nextQuestionIndex = savedResult.length === 0 ? 0 : savedResult.length;
   const current_question = qna[nextQuestionIndex]
   const options = current_question.options;
+  let selectedValue ;
 
   function onSubmit(e) {
     e.preventDefault();
-    savedResult.push(result === current_question.correct_answer ? true : false)
+    savedResult.push(selectedValue === current_question.correct_answer ? true : false)
     props.saveResult(savedResult);
     
     if(savedResult.length === qna.length){
@@ -26,7 +26,7 @@ function Quiz(props) {
   }
 
   function onChange(value) {
-    setResult(value);
+    selectedValue = value;
   }
 
   
@@ -39,10 +39,10 @@ function Quiz(props) {
         {options.map((option) => (
         <div key={option} className="mb-3">
           <Form.Check 
+            name="options"
             type="radio"
             label={option}
             value={option}
-            checked={result === option}
             onChange={e =>onChange( e.target.value)} 
           />         
         </div>
