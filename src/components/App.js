@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { QUIZ_STATUS } from '../constants/constants.js';
 import * as QUIZACTIONS from '../actions/quiz';
 
-import Header from './Header';
 import Config from './Config';
 import Quiz from './Quiz';
 import Loader from './Loader';
@@ -24,7 +23,6 @@ const App = (props) => {
 
   return (
     <>
-    <Header></Header>
     <React.StrictMode>
     {loader && (<Loader > Fetching Data... </Loader>)}     
     {!loader && quizStatus === QUIZ_STATUS.RESET && (<Config  startquiz={startquiz}></Config>)}     
